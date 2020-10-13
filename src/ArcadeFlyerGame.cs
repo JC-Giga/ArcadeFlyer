@@ -42,9 +42,12 @@ namespace ArcadeFlyer2D
         // Load the content for the game, called automatically on start
         protected override void LoadContent()
         {
-            playerImage = Content.Load<Texture2D>("MainChar");
-            // Create the sprite batch
+            //loads content onto the screen, references
             spriteBatch = new SpriteBatch(GraphicsDevice);
+            // Create the sprite batch
+            playerImage = Content.Load<Texture2D>("MainChar");
+
+
         }
 
         // Called every frame

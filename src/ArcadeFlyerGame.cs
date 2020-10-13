@@ -5,15 +5,18 @@ namespace ArcadeFlyer2D
 {
     // The Game itself
     class ArcadeFlyerGame : Game
-    {
+    {//arcade inherits from game. it can add too
         // Graphics Manager
         private GraphicsDeviceManager graphics;
 
         // Sprite Drawer
         private SpriteBatch spriteBatch;
         
+        // Player Character Graphic
+        private Texture2D playerImage;
+
         // Initalized the game
-        public ArcadeFlyerGame()
+        public ArcadeFlyerGame() //instance to make arcade flyer game
         {
             // Get the graphics
             graphics = new GraphicsDeviceManager(this);
@@ -39,6 +42,7 @@ namespace ArcadeFlyer2D
         // Load the content for the game, called automatically on start
         protected override void LoadContent()
         {
+            playerImage = Content.Load<Texture2D>("MainChar");
             // Create the sprite batch
             spriteBatch = new SpriteBatch(GraphicsDevice);
         }
@@ -54,7 +58,14 @@ namespace ArcadeFlyer2D
         protected override void Draw(GameTime gameTime)
         {
             // First clear the screen
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            GraphicsDevice.Clear(Color.White);
+
+            spriteBatch.Begin();
+            //Drawing will happen here! need to set how big character is
+            Rectangle playerDestinationRect = new Rectangle(0,0, playerImage.Width, playerImage.Height);
+            spriteBatch.Draw(playerImage, playerDestinationRect, Color.White);
+
+            spriteBatch.End();
         }
     }
 }

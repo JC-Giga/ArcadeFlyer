@@ -1,5 +1,6 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 
 namespace ArcadeFlyer2D
 {
@@ -9,6 +10,7 @@ namespace ArcadeFlyer2D
         private ArcadeFlyerGame root;
         private Vector2 position;
         private Texture2D spriteImage;
+        private float movementSpeed = 4.0f; //lowercase m bc private and not property.
 
         public float SpriteHeight
         {   //to get property and not let it change original variable use get. Game player need this though. caapitalized for reason.
@@ -19,6 +21,7 @@ namespace ArcadeFlyer2D
 
         }
             //properties should always be public
+        
         public Rectangle PostionRectangle
         {
             get{
@@ -42,9 +45,37 @@ namespace ArcadeFlyer2D
             this.spriteImage = root.Content.Load<Texture2D>("MainChar");
         }
 
-        public void Update(GameTime gameTime)//to do define this
+        public void Update(GameTime gameTime)// Read Evalu. Print loop. REPL LOOP3000
         {
+            KeyboardState currentKeyboardState = Keyboard.GetState();
+            HandleInput(currentKeyboardState);
+        }
 
+        private void HandleInput(KeyboardState currentKeyboardState)
+        {
+            bool upKeyPressed = currentKeyboardState.IsKeyDown(Keys.W);
+            if(upKeyPressed)
+            {
+                position.Y -= movementSpeed;
+            }
+
+            bool downKeyPressed = currentKeyboardState.IsKeyDown(Keys.S);
+            if(downKeyPressed)
+            {
+                position.Y += movementSpeed;
+            }
+
+            bool leftKeyPressed = currentKeyboardState.IsKeyDown(Keys.A);
+            if(leftKeyPressed)
+            {
+                position.X -= movementSpeed;
+            }
+
+            bool rightKeyPressed = currentKeyboardState.IsKeyDown(Keys.D);
+            if(rightKeyPressed)
+            {
+                position.X += movementSpeed;
+            }
         }
 
         public void Draw(GameTime gameTime, SpriteBatch spriteBatch)

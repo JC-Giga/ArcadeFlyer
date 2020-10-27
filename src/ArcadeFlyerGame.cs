@@ -11,11 +11,13 @@ namespace ArcadeFlyer2D
 
         // Sprite Drawer
         private SpriteBatch spriteBatch;
-        
+
         // Player Character Graphic
         private Texture2D playerImage;
 
         private Player player;//brings in Player.cs class and creates object player
+
+        private Enemy enemy;
 
         private int screenWidth = 1600;
         public int ScreenWidth
@@ -48,9 +50,11 @@ namespace ArcadeFlyer2D
             // Make mouse visible
             IsMouseVisible = true;
 
-            
+
             Vector2 position = new Vector2(0.0f, 0.0f);
-            player = new Player(this,position);
+            player = new Player(this, position);
+
+            enemy = new Enemy(this, new Vector2(screenWidth, 0));
         }
 
         // Initialize
@@ -69,10 +73,11 @@ namespace ArcadeFlyer2D
 
         // Called every frame
         protected override void Update(GameTime gameTime)
-        {   
+        {
             player.Update(gameTime);
             // Update base game
             base.Update(gameTime);
+            enemy.Update(gameTime);
         }
 
         // Draw everything in the game

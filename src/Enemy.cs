@@ -23,7 +23,7 @@ namespace ArcadeFlyer2D
                 return spriteImage.Height * scale;
             }
         }
-        public Rectangle PostionRectangle
+        public Rectangle PositionRectangle
         {
             get
             {
@@ -33,15 +33,44 @@ namespace ArcadeFlyer2D
 
         }
 
-        public Enemy()
+        // Initialize an enemy
+        public Enemy(ArcadeFlyerGame root, Vector2 position)
         {
+            // Initialize values
+            this.root = root;
+            this.position = position;
+            this.spriteWidth = 128.0f;
+            this.velocity = new Vector2(-1.0f, 5.0f);
 
+            // Load the content for this enemy
+            LoadContent();
         }
 
-
-        public void LoadContent()//use this method to have objects use their own graphics
+        // Loads all the assets for this enemy
+        public void LoadContent()
         {
+            // Get the Enemy image
             this.spriteImage = root.Content.Load<Texture2D>("Enemy");
+        }
+
+        // Called each frame
+        public void Update(GameTime gameTime)
+        {
+            // Handle movement
+            position += velocity;
+
+            // Bounce on top and bottom
+            if (position.Y < 0 || position.Y > (root.ScreenHeight - SpriteHeight))
+            {
+                velocity.Y *= -1;
+            }
+        }
+
+        // Draw this enemy
+        public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
+        {
+            // Use the Sprite Batch to draw
+            spriteBatch.Draw(spriteImage, PositionRectangle, Color.White);
         }
 
 

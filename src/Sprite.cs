@@ -69,9 +69,5 @@ namespace ArcadeFlyer2D
         {
             spriteBatch.Draw(spriteImage, PositionRectangle, Color.Khaki);
         }
-
-
     }
-
-
 }

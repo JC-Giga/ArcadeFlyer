@@ -18,8 +18,5 @@ namespace ArcadeFlyer2D
             position += velocity;
 
         }
-
     }
-
-
 }

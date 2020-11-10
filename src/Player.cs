@@ -18,7 +18,7 @@ namespace ArcadeFlyer2D
         public Player(ArcadeFlyerGame root, Vector2 position) : base(position)
         // call base class sprite
         {
-            // Initialize values
+             // Initialize values
             this.root = root;
             this.Position = position;
             this.SpriteWidth = 128.0f;
